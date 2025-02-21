@@ -1,0 +1,63 @@
+Documentación de la API
+-------------------------------------------------------------------------------------------------------------------------
+    Descripción
+Este programa obtiene y muestra datos sobre casos positivos de COVID-19 en Colombia. Usa la API de datos abiertos
+de Socrata para obtener la información y la presenta en formato tabular en la terminal.
+-------------------------------------------------------------------------------------------------------------------------
+    Estructura del Proyecto
+    api/→
+        api/ → Contiene la lógica de conexión con la API.
+    ui/→
+        ui/ → Maneja la interacción con el usuario y la presentación de los datos.
+    main.py → Punto de entrada del programa.
+-------------------------------------------------------------------------------------------------------------------------
+    api/api.py
+Este módulo maneja la conexión con la API de Socrata y obtiene los datos necesarios.
+
+Funciones
+    consultar_datos(limite_registros, nombre_departamento):
+
+Conecta con la API y obtiene datos sobre COVID-19 en un departamento específico.
+Parámetros:
+limite_registros (int): Número máximo de registros a recuperar.
+nombre_departamento (str): Nombre del departamento a filtrar.
+Retorna: Un DataFrame con los datos obtenidos.
+-------------------------------------------------------------------------------------------------------------------------
+    ui/ui.py
+Este módulo maneja la interacción con el usuario y la presentación de los datos.
+
+Funciones
+    pedir_datos():
+
+Solicita al usuario la cantidad de registros y el departamento a consultar.
+Retorna:
+cantidad_registros (int)
+nombre_departamento (str) en mayúsculas.
+    filtrar_datos(results_df):
+
+Verifica que la columna "pais_viajo_1_nom" exista en el DataFrame. Si no existe, la agrega con valores "N/A".
+Parámetros:
+results_df (DataFrame): Datos obtenidos de la API.
+Retorna: Un DataFrame corregido.
+    ordenar_tabular_datos(results_df):
+
+Ordena y muestra los datos en formato tabular con nombres de columnas más descriptivos.
+Parámetros:
+results_df (DataFrame): Datos filtrados de la API.
+Salida: Imprime los datos formateados en la terminal.
+
+-------------------------------------------------------------------------------------------------------------------------
+main.py
+Este es el archivo principal que ejecuta el programa.
+
+Flujo de ejecución
+1️. Solicita los datos al usuario.
+2️. Consulta la API de Socrata con los parámetros ingresados.
+3️. Ordena y formatea los datos obtenidos.
+4️. Imprime una tabla con la información en la terminal.
+
+Funciones
+    main():
+
+Llama a las funciones necesarias para ejecutar el programa.
+-------------------------------------------------------------------------------------------------------------------------
